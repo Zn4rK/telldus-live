@@ -2,7 +2,7 @@
 
 In anticipation of the [local support (4 years now!)](http://developer.telldus.se/ticket/114) for [Tellstick Net](http://www.telldus.se/products/tellstick_net), I've decided to write this API to facilitate the process of creating your own interfaces and other cool stuff you can do with the hardware.
 
-I was worried a bit about the latency by using this API, but it seems to work almost instant.
+I was worried a bit about the latency by using this API, but it seems to work almost instantly.
 
 I couldn't find any good PHP-SDK's for Telldus, so I've written my own. Feel free to use it, and help me make it better. 
 
