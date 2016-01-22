@@ -1,4 +1,6 @@
 <?php
+require '../vendor/autoload.php';
+
 /**
  * Use this if you're building an application just for you.
  *
