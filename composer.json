@@ -16,7 +16,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Paxx\\Telldus\\": "src"
+            "Paxx\\Telldus\\": "src/Paxx/Telldus"
         }
     }
 }

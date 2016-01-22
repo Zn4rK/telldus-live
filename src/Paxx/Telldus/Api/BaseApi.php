@@ -3,7 +3,7 @@
 use GuzzleHttp\Client;
 use Paxx\Telldus\Exception\ApiException;
 
-class BaseApi {
+abstract class BaseApi {
 
     /**
      * @var Client
