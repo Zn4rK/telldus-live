@@ -1,8 +1,8 @@
 {
-    "name": "paxx/telldus",
+    "name": "paxx/telldus-live",
     "description": "Telldus Live API",
     "license": "MIT",
-    "keywords": ["telldus", "telldus-live", "live", "tellstick"],
+    "keywords": ["telldus", "telldus-live", "live", "tellstick", "tellstick net", "telldus live api", "api"],
     "authors": [
         {
             "name": "Alexander Liljengård",
