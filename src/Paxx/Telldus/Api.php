@@ -78,27 +78,32 @@ class Api extends BaseApi {
     }
 
     /**
-     * Get devices
+     * Returns a list of all devices associated with the current user
+     *
+     * @param null|bool $includeIgnored - Set to true to include ignored devices
+     * @param null $supportedMethods - The methods supported by the calling application. If this parameter is not set the methods and state will always report 0.
+     * @param null $extras - Comma-delimited list. Currently supported fields are: coordinate, timezone, transport, and tzoffset
+     * @return mixed
      */
-    public function getDevices()
+    public function devices($includeIgnored=null, $supportedMethods=null, $extras=null)
     {
-        $devices = $this->request('devices/list');
-        return $devices['device'];
-    }
+        if($includeIgnored !== null) {
+            $includeIgnored = (int) $includeIgnored;
+        }
 
-    /**
-     * Get clients
-     */
-    public function getClients()
-    {
-        $clients = $this->request('clients/list');
-        return $clients;
+        $devices = $this->request('devices/list', array(
+            'includeIgnored'   => $includeIgnored,
+            'supportedMethods' => $supportedMethods,
+            'extras'           => $extras
+        ));
+
+        return $devices['device'];
     }
 
     /**
      * Creates Device API instance
      *
-     * @param int|null $id
+     * @param int|null $id - Device id
      * @return Api\Device
      */
     public function device($id=null) {
@@ -106,11 +111,116 @@ class Api extends BaseApi {
     }
 
     /**
+     * Returns a list of all clients associated with the current user
+     *
+     * @param $extras - Comma-delimited list. Supported fields are: coordinate, features, latestversion, suntime, timezone, transports and tzoffset
+     * @return mixed|array
+     */
+    public function clients($extras=null)
+    {
+        $clients = $this->request('clients/list', array(
+            'extras' => $extras
+        ));
+
+        return $clients['client'];
+    }
+
+    /**
      * Creates a Client API instance
      *
+     * @param int|null $id - Client id
      * @return Api\Client
      */
-    public function client() {
-        return new Api\Client($this->client);
+    public function client($id = null) {
+        return new Api\Client($this->client, $id);
     }
+
+    /**
+     * Creates a Group API instance
+     *
+     * @param null $id
+     * @return Api\Group
+     */
+    public function group($id = null) {
+        return new Api\Group($this->client, $id);
+    }
+
+    /**
+     * Returns a list of all sensors associated with the current user
+     *
+     * @param null|bool $includeIgnored - Set to true to include ignored sensors
+     * @param null|bool $includeValues - Set to true to include the last value for each sensor
+     * @param null|bool $includeScale - Set to true to include the scale types for values (only valid if combined with 'includeValues'), this will return values in a separate list
+     * @param null|bool $useAlternativeData - BETA Use sensor data from alternative storage, this parameter will be REMOVED in the future (alternative storage will always be used) BETA
+     * @return mixed
+     */
+    public function sensors($includeIgnored=null, $includeValues=null, $includeScale=null, $useAlternativeData=null)
+    {
+        if($includeIgnored !== null) {
+            $includeIgnored = (int) $includeIgnored;
+        }
+
+        if($includeValues !== null) {
+            $includeValues = (int) $includeValues;
+        }
+
+        if($includeScale !== null) {
+            $includeValues = (int) $includeValues;
+        }
+
+        if($useAlternativeData !== null) {
+            $useAlternativeData = (int) $useAlternativeData;
+        }
+
+        $response = $this->request('sensors/list', array(
+            'includeIgnored'     => $includeIgnored,
+            'includeValues'      => $includeValues,
+            'includeScale'       => $includeScale,
+            'useAlternativeData' => $useAlternativeData
+        ));
+
+        return $response['sensor'];
+    }
+
+    /**
+     * Creates a Sensor API instance
+     *
+     * @param null $id - Sensor id
+     * @return Api\Sensor
+     */
+    public function sensor($id=null)
+    {
+        return new Api\Sensor($this->client, $id);
+    }
+
+    /**
+     * Returns a list of events
+     *
+     * @param true|null $listOnly - Only list the events and do not return triggers, conditions and actions.
+     * @return mixed
+     */
+    public function events($listOnly=null) {
+        if($listOnly !== null && $listOnly === true) {
+            $listOnly = 1;
+        }
+
+        $response = $this->request('events/list', array(
+            'listOnly' => $listOnly
+        ));
+
+        return $response['event'];
+    }
+
+    /**
+     * Creates a Event API instance
+     *
+     * @param null $id - Event id
+     * @return Api\Event
+     */
+    public function event($id=null)
+    {
+        return new Api\Event($this->client, $id);
+    }
+
+
 }
