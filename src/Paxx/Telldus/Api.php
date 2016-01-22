@@ -12,8 +12,8 @@ class Api extends BaseApi {
 
     private $identifier;
     private $secret;
-    private $token;
-    private $token_secret;
+    private $user_identifier;
+    private $user_secret;
 
     private $client;
 
@@ -30,8 +30,8 @@ class Api extends BaseApi {
         $config = array(
             'consumer_key'    => $this->identifier,
             'consumer_secret' => $this->secret,
-            'token'           => $this->token,
-            'token_secret'    => $this->token_secret,
+            'token'           => $this->user_identifier,
+            'token_secret'    => $this->user_secret,
             'request_method'  => 'query'
         );
 
