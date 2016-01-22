@@ -222,5 +222,4 @@ class Api extends BaseApi {
         return new Api\Event($this->client, $id);
     }
 
-
 }

@@ -1,10 +1,10 @@
 <?php namespace Paxx\Telldus\Server;
 
 use League\Oauth1\Client\Credentials\TokenCredentials;
-use League\OAuth1\Client\Server\Server as LeagueServer;
+use League\OAuth1\Client\Server\Server;
 use League\OAuth1\Client\Server\User;
 
-class Telldus extends LeagueServer
+class Telldus extends Server
 {
     const API_URL = "http://api.telldus.com/";
 
