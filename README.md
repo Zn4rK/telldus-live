@@ -14,6 +14,9 @@ Since I only have codeswitches I have done my best to keep the phpdoc correct (i
 
 There's two examples included in this project, which should get you started. 
 
+## Install
+`composer require paxx/telldus-live`
+
 ## Contributing
 * This project needs tests. If you have any ideas please let me know. 
 * The Api\Event-class has almost no implementations. The basic framework is there, but the different methods needs to be implemented. 
