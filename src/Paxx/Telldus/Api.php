@@ -222,4 +222,24 @@ class Api extends BaseApi {
         return new Api\Event($this->client, $id);
     }
 
+    /**
+     * Creates a Scheduler API instance
+     *
+     * @return Api\Scheduler
+     */
+    public function scheduler()
+    {
+        return new Api\Scheduler($this->client);
+    }
+
+    /**
+     * Creates a User API instance
+     *
+     * @return Api\User
+     */
+    public function user()
+    {
+        return new Api\User($this->client);
+    }
+
 }
